@@ -62,5 +62,6 @@ RiscvMicroInst::advancePC(ThreadContext *tc) const
     tc->pcState(pc);
 }
 
+
 } // namespace RiscvISA
 } // namespace gem5

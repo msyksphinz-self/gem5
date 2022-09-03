@@ -427,6 +427,9 @@ decode QUADRANT default Unknown::unknown() {
                     fd = freg(f64(Mem));
                     Fd_bits = fd.v;
                 }}, inst_flags=FloatMemReadOp);
+                0x0: vle8({{
+                   Rd = Mem_uw;
+                }});
             }
         }
 
@@ -621,6 +624,9 @@ decode QUADRANT default Unknown::unknown() {
 
                     Mem_ud = Fs2_bits;
                 }}, inst_flags=FloatMemWriteOp);
+                0x0: vse8({{
+                      Mem_ub = 0;
+                }});
             }
         }
 
@@ -1887,5 +1893,21 @@ decode QUADRANT default Unknown::unknown() {
         }
 
         0x1e: M5Op::M5Op();
-    }
+
+        0x15: decode FUNCT3 {
+             0x7: decode IMMSIGN {
+                format CSROp {
+                   0x0 : vsetvli({{
+                         if (Rs1 > 16) {
+                           Rd = 16;
+                         } else {
+                           Rd = Rs1;
+                         }
+                         // fprintf(stderr, "vsetvli set rd=%d,
+                         rs1=%d\n", Rd, Rs1);
+                   }}, IsSerializeAfter, IsNonSpeculative, No_OpClass);
+                }
+             }
+        }
+  }
 }

@@ -88,6 +88,10 @@ class RiscvStaticInst : public StaticInst
     {
         return simpleAsBytes(buf, size, machInst);
     }
+
+  void printMnemonic(std::ostream &os,
+                     const std::string &suffix = "") const;
+
 };
 
 /**
