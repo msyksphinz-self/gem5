@@ -428,7 +428,12 @@ decode QUADRANT default Unknown::unknown() {
                     Fd_bits = fd.v;
                 }}, inst_flags=FloatMemReadOp);
                 0x0: vle8({{
-                   Rd = Mem_uw;
+                      Mem_ub;
+                      RvvUnitStrideMem *rvv_mem =
+                          new RvvUnitStrideMem("vle8",
+                                               machInst,
+                                               MemReadOp,
+                                               Rd, Rs1);
                 }});
             }
         }
@@ -625,7 +630,22 @@ decode QUADRANT default Unknown::unknown() {
                     Mem_ud = Fs2_bits;
                 }}, inst_flags=FloatMemWriteOp);
                 0x0: vse8({{
-                      Mem_ub = 0;
+                      Mem_ub = Rs2_ub;
+                      Mem_ub = Rs2_ub;
+                      Mem_ub = Rs2_ub;
+                      Mem_ub = Rs2_ub;
+                      Mem_ub = Rs2_ub;
+                      Mem_ub = Rs2_ub;
+                      Mem_ub = Rs2_ub;
+                      Mem_ub = Rs2_ub;
+                      Mem_ub = Rs2_ub;
+                      Mem_ub = Rs2_ub;
+                      Mem_ub = Rs2_ub;
+                      Mem_ub = Rs2_ub;
+                      Mem_ub = Rs2_ub;
+                      Mem_ub = Rs2_ub;
+                      Mem_ub = Rs2_ub;
+                      Mem_ub = Rs2_ub;
                 }});
             }
         }
@@ -1904,7 +1924,7 @@ decode QUADRANT default Unknown::unknown() {
                            Rd = Rs1;
                          }
                          // fprintf(stderr, "vsetvli set rd=%d,
-                         rs1=%d\n", Rd, Rs1);
+                         // rs1=%d\n", Rd, Rs1);
                    }}, IsSerializeAfter, IsNonSpeculative, No_OpClass);
                 }
              }

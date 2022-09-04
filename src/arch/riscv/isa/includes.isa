@@ -49,6 +49,7 @@ output header {{
 #include "arch/riscv/insts/compressed.hh"
 #include "arch/riscv/insts/mem.hh"
 #include "arch/riscv/insts/pseudo.hh"
+#include "arch/riscv/insts/rvv_mem.hh"
 #include "arch/riscv/insts/standard.hh"
 #include "arch/riscv/insts/static_inst.hh"
 #include "arch/riscv/insts/unknown.hh"
@@ -56,7 +57,7 @@ output header {{
 #include "mem/packet.hh"
 #include "mem/request.hh"
 
-}};
+  }};
 
 output decoder {{
 #include <cfenv>

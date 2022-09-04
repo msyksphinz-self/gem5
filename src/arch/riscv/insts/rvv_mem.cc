@@ -7,18 +7,18 @@ namespace RiscvISA
 {
 
 std::string
-RvvUnitStrideMemSS::generateDisassembly(
+RvvUnitStrideMem::generateDisassembly(
     Addr pc, const loader::SymbolTable *symtab) const
 {
-  return "_RvvUnitStrideMemSS_";
+  return "_RvvUnitStrideMem_";
 }
 
-std::string
-RvvUnitStrideMemSI::generateDisassembly(
-    Addr pc, const loader::SymbolTable *symtab) const
+Fault RvvUnitStrideMem::execute(ExecContext *xc,
+    Trace::InstRecord *traceData) const
 {
-  return "_RvvUnitStrideMemSI_";
+    return NoFault;
 }
+
 
 } // namespace RiscvISA
 } // namespace gem5

@@ -9,38 +9,26 @@ namespace gem5
 namespace RiscvISA
 {
 
-class RvvUnitStrideMemSS : public RiscvStaticInst
+class RvvUnitStrideMem : public RiscvStaticInst
 {
  protected:
   RegIndex dest;
   RegIndex base;
 
-  RvvUnitStrideMemSS(const char *mnem, ExtMachInst _machInst,
-                     OpClass __opClass,
-                     RegIndex _dest, RegIndex _base)
+ public:
+  RvvUnitStrideMem(const char *mnem, ExtMachInst _machInst,
+                   OpClass __opClass,
+                   RegIndex _dest, RegIndex _base)
       : RiscvStaticInst(mnem, _machInst, __opClass),
         dest(_dest), base(_base)
   {}
 
   std::string generateDisassembly(
       Addr pc, const loader::SymbolTable *symtab) const override;
-};
 
-class RvvUnitStrideMemSI : public RiscvStaticInst
-{
- protected:
-  RegIndex dest;
-  RegIndex base;
+  Fault execute(ExecContext *xc,
+                Trace::InstRecord *traceData) const;
 
-  RvvUnitStrideMemSI(const char *mnem, ExtMachInst _machInst,
-                     OpClass __opClass,
-                     RegIndex _dest, RegIndex _base)
-      : RiscvStaticInst(mnem, _machInst, __opClass),
-        dest(_dest), base(_base)
-  {}
-
-  std::string generateDisassembly(
-      Addr pc, const loader::SymbolTable *symtab) const override;
 };
 
 } // namespace RiscvISA
