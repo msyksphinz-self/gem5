@@ -7,6 +7,14 @@ namespace RiscvISA
 {
 
 std::string
+RVVLoad::generateDisassembly(
+    Addr pc, const loader::SymbolTable *symtab) const
+{
+  return "_RvvLoad_";
+}
+
+
+std::string
 RvvUnitStrideMem::generateDisassembly(
     Addr pc, const loader::SymbolTable *symtab) const
 {
@@ -18,7 +26,6 @@ Fault RvvUnitStrideMem::execute(ExecContext *xc,
 {
     return NoFault;
 }
-
 
 } // namespace RiscvISA
 } // namespace gem5

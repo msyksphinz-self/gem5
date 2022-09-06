@@ -427,14 +427,10 @@ decode QUADRANT default Unknown::unknown() {
                     fd = freg(f64(Mem));
                     Fd_bits = fd.v;
                 }}, inst_flags=FloatMemReadOp);
+            }
+            format RVVLoad {
                 0x0: vle8({{
-                      Mem_ub;
-                      RvvUnitStrideMem *rvv_mem =
-                          new RvvUnitStrideMem("vle8",
-                                               machInst,
-                                               MemReadOp,
-                                               Rd, Rs1);
-                }});
+                    }}, base_reg=[Rs1]);
             }
         }
 

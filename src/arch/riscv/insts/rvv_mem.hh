@@ -9,7 +9,25 @@ namespace gem5
 namespace RiscvISA
 {
 
-class RvvUnitStrideMem : public RiscvStaticInst
+class RVVLoad : public RiscvStaticInst
+{
+ protected:
+    Request::Flags memAccessFlags;
+
+ public:
+  RVVLoad (const char *mnem, ExtMachInst _machInst,
+           OpClass __opClass)
+      : RiscvStaticInst(mnem, _machInst, __opClass)
+  {}
+
+ protected:
+
+    std::string generateDisassembly(
+        Addr pc, const loader::SymbolTable *symtab) const override;
+};
+
+
+class RvvUnitStrideMem : public RVVLoad
 {
  protected:
   RegIndex dest;
@@ -19,7 +37,7 @@ class RvvUnitStrideMem : public RiscvStaticInst
   RvvUnitStrideMem(const char *mnem, ExtMachInst _machInst,
                    OpClass __opClass,
                    RegIndex _dest, RegIndex _base)
-      : RiscvStaticInst(mnem, _machInst, __opClass),
+      : RVVLoad(mnem, _machInst, __opClass),
         dest(_dest), base(_base)
   {}
 
